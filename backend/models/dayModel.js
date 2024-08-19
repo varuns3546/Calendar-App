@@ -1,6 +1,4 @@
 const mongoose = require('mongoose')
-const Task = require('../models/taskModel')
-
 const Schema = mongoose.Schema
 
 const daySchema = new Schema({
@@ -9,7 +7,7 @@ const daySchema = new Schema({
     required: true
   },
   tasks:{
-    type: [Task],
+    type: Array,
     required: true
   }
   

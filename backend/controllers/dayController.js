@@ -31,11 +31,8 @@ const createDay = async (req, res) => {
 
   let emptyFields = []
 
-  if (!title) {
+  if (!date) {
     emptyFields.push('date')
-  }
-  if (!load) {
-    emptyFields.push('tasks')
   }
   if (emptyFields.length > 0) {
     return res.status(400).json({ error: 'Please fill in all fields', emptyFields })
@@ -43,10 +40,10 @@ const createDay = async (req, res) => {
 
   // add to the database
   try {
-    const day = await Day.create({ date, tasks })
+    const day = await Day.create({ date: new Date(date), tasks })
     res.status(200).json(day)
   } catch (error) {
-    res.status(400).json({ error: error.message })
+    res.status(400).json({ error: "hi" + error.message })
   }
 }
 
@@ -64,7 +61,7 @@ const deleteDay = async (req, res) => {
     return res.status(400).json({error: 'No such day'})
   }
 
-  res.status(200).json(day)``
+  res.status(200).json(day)
 }
 
 // update a day
